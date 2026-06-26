@@ -3,8 +3,9 @@ from functools import lru_cache
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = 'postgresql://postgres:postgres@localhost:5432/stepwise'
-    TEST_DATABASE_URL: str = 'postgresql://postgres:postgres@localhost:5432/stepwise_test'
+    DATABASE_URL: str = 'postgresql+asyncpg://postgres:postgres@localhost:5432/stepwise'
+    TEST_DATABASE_URL: str = 'postgresql+asyncpg://postgres:postgres@localhost:5432/stepwise_test'
+    ALEMBIC_DATABASE_URL: str = 'postgresql://postgres:postgres@localhost:5432/stepwise'
     REDIS_URL: str = 'redis://localhost:6379'
     SECRET_KEY: str = 'secret-key'
     ALGORITHM: str = 'HS256'
