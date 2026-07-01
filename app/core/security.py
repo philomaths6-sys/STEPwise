@@ -8,6 +8,9 @@ settings = get_settings()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def hash_password(plain: str) -> str:
+    # bcrypt has a 72 byte limit, truncate if necessary
+    if len(plain.encode('utf-8')) > 72:
+        plain = plain.encode('utf-8')[:72].decode('utf-8', errors='ignore')
     return pwd_context.hash(plain)
 
 def verify_password(plain: str, hashed: str) -> bool:
